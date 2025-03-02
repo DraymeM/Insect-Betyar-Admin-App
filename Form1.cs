@@ -25,7 +25,7 @@ namespace Insect_Betyar_Admin_App
         private List<Item> items = new List<Item>();
         private string currentCategoryFilePath = null;
         private string currentItemFilePath = null;
-        private string selectedImagePath = null;
+        private string selectedImagePath = null; // Used for both category and item image selection
 
         public Form1()
         {
@@ -305,6 +305,125 @@ namespace Insect_Betyar_Admin_App
             catch (Exception ex)
             {
                 MessageBox.Show($"Error adding category: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void keptermekfeltButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image files (*.jpg;*.jpeg;*.png;*.gif)|*.jpg;*.jpeg;*.png;*.gif|All files (*.*)|*.*";
+                openFileDialog.Title = "Select an image file for the item";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        string fileName = Path.GetFileName(openFileDialog.FileName);
+                        selectedImagePath = "/images/" + fileName;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Hiba a termék kép kiválasztásakor: {ex.Message}",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void termekMentesButton_Click(object sender, EventArgs e)
+        {
+            // Validate all required fields
+            if (string.IsNullOrEmpty(nevtermektextBox.Text))
+            {
+                MessageBox.Show("Kérlek írd be a termék nevét!",
+                    "Missing Name",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(selectedImagePath))
+            {
+                MessageBox.Show("Elõször válassz ki egy kép fájlt a termékhez!",
+                    "Missing Image",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(leirasTexBox.Text))
+            {
+                MessageBox.Show("Kérlek írd be a termék leírását!",
+                    "Missing Description",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(artextBox.Text))
+            {
+                MessageBox.Show("Kérlek írd be a termék árát!",
+                    "Missing Price",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (kategoriaComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Kérlek válassz egy kategóriát!",
+                    "Missing Category",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // Get the highest existing ID and increment it
+                int newId = items.Any() ? items.Max(i => i.id) + 1 : 1;
+
+                // Create new item
+                var newItem = new Item
+                {
+                    id = newId,
+                    name = nevtermektextBox.Text,
+                    picture = selectedImagePath,
+                    description = leirasTexBox.Text,
+                    price = artextBox.Text,
+                    category = kategoriaComboBox.SelectedItem.ToString()
+                };
+
+                // Add to items list
+                items.Add(newItem);
+
+                // Update UI and save to file
+                PopulateItems();
+                SaveToItemJsonFile();
+
+                // Clear input fields
+                nevtermektextBox.Text = "";
+                leirasTexBox.Text = "";
+                artextBox.Text = "";
+                selectedImagePath = null;
+
+                if (string.IsNullOrEmpty(currentItemFilePath))
+                {
+                    MessageBox.Show("Warning: Elõször töltsd be a termék json fájlt.",
+                        "No File Loaded",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hiba a termék hozzáadása közben: {ex.Message}",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
