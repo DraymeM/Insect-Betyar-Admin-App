@@ -11,27 +11,58 @@ namespace Insect_Betyar_Admin_App
             public string image { get; set; }
         }
 
+        public class Item
+        {
+            public int id { get; set; }
+            public string name { get; set; }
+            public string picture { get; set; }
+            public string description { get; set; }
+            public string price { get; set; }
+            public string category { get; set; }
+        }
+
         private List<Category> categories = new List<Category>();
-        private string currentFilePath = null; // Store the current JSON file path
-        private string selectedImagePath = null; // Store the selected image path
+        private List<Item> items = new List<Item>();
+        private string currentCategoryFilePath = null;
+        private string currentItemFilePath = null;
+        private string selectedImagePath = null;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void SaveToJsonFile()
+        private void SaveToCategoryJsonFile()
         {
-            if (!string.IsNullOrEmpty(currentFilePath))
+            if (!string.IsNullOrEmpty(currentCategoryFilePath))
             {
                 try
                 {
                     string jsonString = JsonSerializer.Serialize(categories, new JsonSerializerOptions { WriteIndented = true });
-                    File.WriteAllText(currentFilePath, jsonString);
+                    File.WriteAllText(currentCategoryFilePath, jsonString);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Hiba történt a file mentése közben: {ex.Message}",
+                    MessageBox.Show($"Hiba történt a kategória file mentése közben: {ex.Message}",
+                        "Save Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void SaveToItemJsonFile()
+        {
+            if (!string.IsNullOrEmpty(currentItemFilePath))
+            {
+                try
+                {
+                    string jsonString = JsonSerializer.Serialize(items, new JsonSerializerOptions { WriteIndented = true });
+                    File.WriteAllText(currentItemFilePath, jsonString);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Hiba történt a termék file mentése közben: {ex.Message}",
                         "Save Error",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -57,25 +88,67 @@ namespace Insect_Betyar_Admin_App
             }
         }
 
+        private void PopulateItems()
+        {
+            termekBoxT.Items.Clear();
+
+            foreach (var item in items)
+            {
+                termekBoxT.Items.Add(item.name);
+            }
+
+            if (items.Count > 0)
+            {
+                termekBoxT.SelectedIndex = 0;
+            }
+        }
+
         private void KategoriaFileButton_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
-                openFileDialog.Title = "Select a JSON file";
+                openFileDialog.Title = "Select a category JSON file";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        currentFilePath = openFileDialog.FileName;
-                        string jsonString = File.ReadAllText(currentFilePath);
+                        currentCategoryFilePath = openFileDialog.FileName;
+                        string jsonString = File.ReadAllText(currentCategoryFilePath);
                         categories = JsonSerializer.Deserialize<List<Category>>(jsonString);
                         PopulateCategories();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Hiba történt a file betöltésekor: {ex.Message}",
+                        MessageBox.Show($"Hiba történt a kategória file betöltésekor: {ex.Message}",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void termekFileButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+                openFileDialog.Title = "Select an item JSON file";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        currentItemFilePath = openFileDialog.FileName;
+                        string jsonString = File.ReadAllText(currentItemFilePath);
+                        items = JsonSerializer.Deserialize<List<Item>>(jsonString);
+                        PopulateItems();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Hiba történt a termék file betöltésekor: {ex.Message}",
                             "Error",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
@@ -93,11 +166,11 @@ namespace Insect_Betyar_Admin_App
                     string selectedCategory = kategoriaBoxT.SelectedItem.ToString();
                     categories.RemoveAll(c => c.name == selectedCategory);
                     PopulateCategories();
-                    SaveToJsonFile();
+                    SaveToCategoryJsonFile();
 
-                    if (string.IsNullOrEmpty(currentFilePath))
+                    if (string.IsNullOrEmpty(currentCategoryFilePath))
                     {
-                        MessageBox.Show("Warning: Elõször töltsd be a json fájlt.",
+                        MessageBox.Show("Warning: Elõször töltsd be a kategória json fájlt.",
                             "No File Loaded",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
@@ -120,10 +193,45 @@ namespace Insect_Betyar_Admin_App
             }
         }
 
+        private void termekTorlesButton_Click(object sender, EventArgs e)
+        {
+            if (termekBoxT.SelectedIndex != -1)
+            {
+                try
+                {
+                    string selectedItem = termekBoxT.SelectedItem.ToString();
+                    items.RemoveAll(i => i.name == selectedItem);
+                    PopulateItems();
+                    SaveToItemJsonFile();
+
+                    if (string.IsNullOrEmpty(currentItemFilePath))
+                    {
+                        MessageBox.Show("Warning: Elõször töltsd be a termék json fájlt.",
+                            "No File Loaded",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Hiba a termék törlése közben!: {ex.Message}",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Kérlek válassz egy terméket a törléshez!",
+                    "No Selection",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+        }
+
         private void nevkategoriaTextBox_TextChanged(object sender, EventArgs e)
         {
-            // We don't need to do anything here for now
-            // This event is just included in case you want to add real-time validation later
+            // Placeholder for potential future validation
         }
 
         private void kepkategoriaFeltoltButton_Click(object sender, EventArgs e)
@@ -137,9 +245,7 @@ namespace Insect_Betyar_Admin_App
                 {
                     try
                     {
-                        // Get just the filename with extension
                         string fileName = Path.GetFileName(openFileDialog.FileName);
-                        // Prepend /images/ to the filename
                         selectedImagePath = "/images/" + fileName;
                     }
                     catch (Exception ex)
@@ -155,7 +261,6 @@ namespace Insect_Betyar_Admin_App
 
         private void kategoriaMentesButton_Click(object sender, EventArgs e)
         {
-            // Check if we have a name
             if (string.IsNullOrEmpty(nevkategoriaTextBox.Text))
             {
                 MessageBox.Show("Kérlek írd be a kategória nevét!",
@@ -165,7 +270,6 @@ namespace Insect_Betyar_Admin_App
                 return;
             }
 
-            // Check if we have an image selected
             if (string.IsNullOrEmpty(selectedImagePath))
             {
                 MessageBox.Show("Elõször válassz ki egy kép fájlt.",
@@ -177,27 +281,22 @@ namespace Insect_Betyar_Admin_App
 
             try
             {
-                // Create new category
                 var newCategory = new Category
                 {
                     name = nevkategoriaTextBox.Text,
                     image = selectedImagePath
                 };
 
-                // Add to categories list
                 categories.Add(newCategory);
-
-                // Update UI and save to file
                 PopulateCategories();
-                SaveToJsonFile();
+                SaveToCategoryJsonFile();
 
-                // Clear the inputs
                 nevkategoriaTextBox.Text = "";
                 selectedImagePath = null;
 
-                if (string.IsNullOrEmpty(currentFilePath))
+                if (string.IsNullOrEmpty(currentCategoryFilePath))
                 {
-                    MessageBox.Show("Warning: Elõször töltsd be a json fájlt.",
+                    MessageBox.Show("Warning: Elõször töltsd be a kategória json fájlt.",
                         "No File Loaded",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);

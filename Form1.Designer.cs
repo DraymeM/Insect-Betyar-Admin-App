@@ -291,6 +291,7 @@
             termekTorlesButton.TabIndex = 18;
             termekTorlesButton.Text = "Termék törlése";
             termekTorlesButton.UseVisualStyleBackColor = false;
+            termekTorlesButton.Click += termekTorlesButton_Click;
             // 
             // termekBoxT
             // 
@@ -385,6 +386,7 @@
             termekFileButton.TabIndex = 3;
             termekFileButton.Text = "Termék File";
             termekFileButton.UseVisualStyleBackColor = false;
+            termekFileButton.Click += termekFileButton_Click;
             // 
             // KategoriaFileButton
             // 
