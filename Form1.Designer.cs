@@ -113,6 +113,7 @@
             termekMentesButton.TabIndex = 10;
             termekMentesButton.Text = "Termék mentése";
             termekMentesButton.UseVisualStyleBackColor = false;
+            termekMentesButton.Click += termekMentesButton_Click;
             // 
             // keptermekfeltButton
             // 
@@ -125,6 +126,7 @@
             keptermekfeltButton.TabIndex = 9;
             keptermekfeltButton.Text = "Kép feltöltés";
             keptermekfeltButton.UseVisualStyleBackColor = false;
+            keptermekfeltButton.Click += keptermekfeltButton_Click;
             // 
             // kategoriaComboBox
             // 
