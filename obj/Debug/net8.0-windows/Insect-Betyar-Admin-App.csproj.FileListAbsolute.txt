@@ -1,0 +1,33 @@
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\bin\Debug\net8.0-windows\Insect-Betyar-Admin-App.exe
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\bin\Debug\net8.0-windows\Insect-Betyar-Admin-App.deps.json
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\bin\Debug\net8.0-windows\Insect-Betyar-Admin-App.runtimeconfig.json
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\bin\Debug\net8.0-windows\Insect-Betyar-Admin-App.dll
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\bin\Debug\net8.0-windows\Insect-Betyar-Admin-App.pdb
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect_Betyar_Admin_App.Form1.resources
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.csproj.GenerateResource.cache
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.AssemblyInfoInputs.cache
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.AssemblyInfo.cs
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.csproj.CoreCompileInputs.cache
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.dll
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\refint\Insect-Betyar-Admin-App.dll
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.pdb
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.genruntimeconfig.cache
+C:\Users\Dani.DESKTOP-J0LINH7\source\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\ref\Insect-Betyar-Admin-App.dll
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\bin\Debug\net8.0-windows\Insect-Betyar-Admin-App.exe
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\bin\Debug\net8.0-windows\Insect-Betyar-Admin-App.deps.json
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\bin\Debug\net8.0-windows\Insect-Betyar-Admin-App.runtimeconfig.json
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\bin\Debug\net8.0-windows\Insect-Betyar-Admin-App.dll
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\bin\Debug\net8.0-windows\Insect-Betyar-Admin-App.pdb
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect_Betyar_Admin_App.Form1.resources
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect_Betyar_Admin_App.Properties.Resources.resources
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.csproj.GenerateResource.cache
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.AssemblyInfoInputs.cache
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.AssemblyInfo.cs
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.csproj.CoreCompileInputs.cache
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.dll
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\refint\Insect-Betyar-Admin-App.dll
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.pdb
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\Insect-Betyar-Admin-App.genruntimeconfig.cache
+C:\Users\Dani.DESKTOP-J0LINH7\Desktop\ELTE PROG.INF\repos\Insect-Betyar-Admin-App\obj\Debug\net8.0-windows\ref\Insect-Betyar-Admin-App.dll
