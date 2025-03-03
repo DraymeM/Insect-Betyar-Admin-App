@@ -7,10 +7,10 @@
       "RelativeMoniker": "D:0:0:{08B54943-6EAB-409E-AD58-E947B25F0AD4}|Insect-Betyar-Admin-App.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dani.DESKTOP-J0LINH7\\Desktop\\ELTE PROG.INF\\repos\\insect-betyar\\public\\data.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dani.DESKTOP-J0LINH7\\Desktop\\ELTE PROG.INF\\repos\\insect-betyar\\public\\categories.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dani.DESKTOP-J0LINH7\\Desktop\\ELTE PROG.INF\\repos\\insect-betyar\\public\\categories.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dani.DESKTOP-J0LINH7\\Desktop\\ELTE PROG.INF\\repos\\insect-betyar\\public\\data.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08B54943-6EAB-409E-AD58-E947B25F0AD4}|Insect-Betyar-Admin-App.csproj|c:\\users\\dani.desktop-j0linh7\\desktop\\elte prog.inf\\repos\\insect-betyar-admin-app\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -36,26 +36,26 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "data.json",
               "DocumentMoniker": "C:\\Users\\Dani.DESKTOP-J0LINH7\\Desktop\\ELTE PROG.INF\\repos\\insect-betyar\\public\\data.json",
               "RelativeDocumentMoniker": "..\\insect-betyar\\public\\data.json",
               "ToolTip": "C:\\Users\\Dani.DESKTOP-J0LINH7\\Desktop\\ELTE PROG.INF\\repos\\insect-betyar\\public\\data.json",
               "RelativeToolTip": "..\\insect-betyar\\public\\data.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-03-02T13:48:03.184Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "categories.json",
               "DocumentMoniker": "C:\\Users\\Dani.DESKTOP-J0LINH7\\Desktop\\ELTE PROG.INF\\repos\\insect-betyar\\public\\categories.json",
               "RelativeDocumentMoniker": "..\\insect-betyar\\public\\categories.json",
               "ToolTip": "C:\\Users\\Dani.DESKTOP-J0LINH7\\Desktop\\ELTE PROG.INF\\repos\\insect-betyar\\public\\categories.json",
               "RelativeToolTip": "..\\insect-betyar\\public\\categories.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-03-02T13:47:58.943Z",
               "EditorCaption": ""
@@ -68,7 +68,7 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\Dani.DESKTOP-J0LINH7\\Desktop\\ELTE PROG.INF\\repos\\Insect-Betyar-Admin-App\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAJUBAAAAAAAAAAAYwLABAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAB8BAAAAAAAAAAAAAEYBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-02T11:24:39.947Z",
               "EditorCaption": ""
@@ -93,7 +93,7 @@
               "RelativeDocumentMoniker": "Form1.Designer.cs",
               "ToolTip": "C:\\Users\\Dani.DESKTOP-J0LINH7\\Desktop\\ELTE PROG.INF\\repos\\Insect-Betyar-Admin-App\\Form1.Designer.cs",
               "RelativeToolTip": "Form1.Designer.cs",
-              "ViewState": "AgIAAM4BAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAvwHMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-02T11:24:54.744Z",
               "EditorCaption": ""

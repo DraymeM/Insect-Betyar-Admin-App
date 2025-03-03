@@ -414,6 +414,7 @@
             Controls.Add(termekFileButton);
             Controls.Add(pictureBox1);
             Controls.Add(tabControl1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Form1";
             tabControl1.ResumeLayout(false);
