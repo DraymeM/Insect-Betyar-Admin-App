@@ -178,7 +178,23 @@ namespace Insect_Betyar_Admin_App
 
         private void kepkategoriaFeltoltButton_Click(object sender, EventArgs e)
         {
-            selectedImagePath = SelectImageFile("Select an image file");
+            string fullImagePath = SelectImageFileFullPath("Select an image file for the item"); // Get the full path directly
+            if (!string.IsNullOrEmpty(fullImagePath))
+            {
+                try
+                {
+                    // Load and display the image using the full path
+                    kategoriaHozPictureBox.Image = Image.FromFile(fullImagePath);
+                    kategoriaHozPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    // Update selectedImagePath to the relative path (for saving to JSON)
+                    selectedImagePath = "/images/" + Path.GetFileName(fullImagePath);
+                }
+                catch (Exception ex)
+                {
+                    ShowErrorMessage($"Hiba a kép megjelenítésekor: {ex.Message}\nPath: {fullImagePath}", "Image Display Error");
+                }
+            }
         }
 
         private void keptermekfeltButton_Click(object sender, EventArgs e)
@@ -245,8 +261,7 @@ namespace Insect_Betyar_Admin_App
                 categories.Add(newCategory);
                 PopulateCategories();
                 SaveJsonFile(currentCategoryFilePath, categories);
-                nevkategoriaTextBox.Text = "";
-                selectedImagePath = null;
+                ClearKategoryInput();
                 CheckFileLoaded(currentCategoryFilePath, "kategória");
             }
             catch (Exception ex)
@@ -343,6 +358,13 @@ namespace Insect_Betyar_Admin_App
             termekHozPictureBox.Image = null;
         }
 
+        private void ClearKategoryInput()
+        {
+            nevkategoriaTextBox.Text = "";
+            selectedImagePath = null;
+            kategoriaHozPictureBox.Image = null;
+        }
+
         private void CheckFileLoaded(string filePath, string type)
         {
             if (string.IsNullOrEmpty(filePath))
@@ -359,5 +381,6 @@ namespace Insect_Betyar_Admin_App
         {
             // Keep this empty event handler since it exists in the original
         }
+
     }
 }

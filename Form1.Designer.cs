@@ -48,6 +48,7 @@
             label3 = new Label();
             tabPage5 = new TabPage();
             tabPage2 = new TabPage();
+            kategoriaHozPictureBox = new PictureBox();
             kategoriaMentesButton = new Button();
             kepkategoriaFeltoltButton = new Button();
             nevkategoriaTextBox = new TextBox();
@@ -65,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)termekHozPictureBox).BeginInit();
             tabPage3.SuspendLayout();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)kategoriaHozPictureBox).BeginInit();
             tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -283,6 +285,7 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(41, 48, 53);
+            tabPage2.Controls.Add(kategoriaHozPictureBox);
             tabPage2.Controls.Add(kategoriaMentesButton);
             tabPage2.Controls.Add(kepkategoriaFeltoltButton);
             tabPage2.Controls.Add(nevkategoriaTextBox);
@@ -294,6 +297,14 @@
             tabPage2.Size = new Size(597, 493);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "+ Kategoria";
+            // 
+            // kategoriaHozPictureBox
+            // 
+            kategoriaHozPictureBox.Location = new Point(329, 93);
+            kategoriaHozPictureBox.Name = "kategoriaHozPictureBox";
+            kategoriaHozPictureBox.Size = new Size(134, 108);
+            kategoriaHozPictureBox.TabIndex = 15;
+            kategoriaHozPictureBox.TabStop = false;
             // 
             // kategoriaMentesButton
             // 
@@ -313,7 +324,7 @@
             kepkategoriaFeltoltButton.BackColor = Color.FromArgb(0, 167, 218);
             kepkategoriaFeltoltButton.Cursor = Cursors.Hand;
             kepkategoriaFeltoltButton.FlatStyle = FlatStyle.Popup;
-            kepkategoriaFeltoltButton.Location = new Point(207, 158);
+            kepkategoriaFeltoltButton.Location = new Point(124, 96);
             kepkategoriaFeltoltButton.Name = "kepkategoriaFeltoltButton";
             kepkategoriaFeltoltButton.Size = new Size(175, 38);
             kepkategoriaFeltoltButton.TabIndex = 13;
@@ -326,7 +337,7 @@
             nevkategoriaTextBox.BackColor = Color.FromArgb(33, 34, 36);
             nevkategoriaTextBox.BorderStyle = BorderStyle.FixedSingle;
             nevkategoriaTextBox.ForeColor = SystemColors.Menu;
-            nevkategoriaTextBox.Location = new Point(127, 114);
+            nevkategoriaTextBox.Location = new Point(124, 52);
             nevkategoriaTextBox.Name = "nevkategoriaTextBox";
             nevkategoriaTextBox.Size = new Size(339, 27);
             nevkategoriaTextBox.TabIndex = 12;
@@ -335,7 +346,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(81, 116);
+            label1.Location = new Point(78, 54);
             label1.Name = "label1";
             label1.Size = new Size(40, 19);
             label1.TabIndex = 11;
@@ -458,6 +469,7 @@
             tabPage3.PerformLayout();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)kategoriaHozPictureBox).EndInit();
             tabPage4.ResumeLayout(false);
             tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -496,5 +508,6 @@
         private TabPage tabPage5;
         private TabPage tabPage6;
         private PictureBox termekHozPictureBox;
+        private PictureBox kategoriaHozPictureBox;
     }
 }
