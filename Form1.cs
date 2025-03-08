@@ -5,6 +5,7 @@ namespace Insect_Betyar_Admin_App
 {
     public partial class Form1 : Form
     {
+        // Data Models
         public class Category
         {
             public string name { get; set; }
@@ -21,62 +22,73 @@ namespace Insect_Betyar_Admin_App
             public string category { get; set; }
         }
 
+        // Data Manager
+        private class DataManager<T>
+        {
+            private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true };
+
+            public List<T> LoadFromFile(string filePath)
+            {
+                try
+                {
+                    string jsonString = File.ReadAllText(filePath);
+                    return JsonSerializer.Deserialize<List<T>>(jsonString) ?? new List<T>();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Hiba történt a file betöltésekor: {ex.Message}", "Load Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return new List<T>();
+                }
+            }
+
+            public void SaveToFile(string filePath, List<T> data)
+            {
+                if (string.IsNullOrEmpty(filePath)) return;
+
+                try
+                {
+                    string jsonString = JsonSerializer.Serialize(data, JsonOptions);
+                    File.WriteAllText(filePath, jsonString);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Hiba történt a mentés közben: {ex.Message}", "Save Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // File Dialog Service
+        private class FileDialogService
+        {
+            public string? ShowOpenFileDialog(string filter, string title)
+            {
+                using var dialog = new OpenFileDialog
+                {
+                    Filter = filter,
+                    Title = title
+                };
+                return dialog.ShowDialog() == DialogResult.OK ? dialog.FileName : null;
+            }
+        }
+
+        private readonly DataManager<Category> categoryManager = new();
+        private readonly DataManager<Item> itemManager = new();
+        private readonly FileDialogService fileDialogService = new();
+
         private List<Category> categories = new List<Category>();
         private List<Item> items = new List<Item>();
         private string currentCategoryFilePath;
         private string currentItemFilePath;
         private string? selectedImagePath;
 
-        private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true };
-
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void SaveJsonFile<T>(string filePath, List<T> data)
-        {
-            if (string.IsNullOrEmpty(filePath)) return;
-
-            try
-            {
-                string jsonString = JsonSerializer.Serialize(data, JsonOptions);
-                File.WriteAllText(filePath, jsonString);
-            }
-            catch (Exception ex)
-            {
-                ShowErrorMessage($"Hiba történt a mentés közben: {ex.Message}", "Save Error");
-            }
-        }
-
-        private void LoadCategoryFile(string filePath)
-        {
-            try
-            {
-                string jsonString = File.ReadAllText(filePath);
-                categories = JsonSerializer.Deserialize<List<Category>>(jsonString) ?? new List<Category>();
-                PopulateCategories();
-            }
-            catch (Exception ex)
-            {
-                ShowErrorMessage($"Hiba történt a kategória file betöltésekor: {ex.Message}", "Load Error");
-            }
-        }
-
-        private void LoadItemFile(string filePath)
-        {
-            try
-            {
-                string jsonString = File.ReadAllText(filePath);
-                items = JsonSerializer.Deserialize<List<Item>>(jsonString) ?? new List<Item>();
-                PopulateItems();
-            }
-            catch (Exception ex)
-            {
-                ShowErrorMessage($"Hiba történt a termék file betöltésekor: {ex.Message}", "Load Error");
-            }
-        }
-
+        // UI Population
         private void PopulateCategories()
         {
             kategoriaComboBox.Items.Clear();
@@ -102,33 +114,30 @@ namespace Insect_Betyar_Admin_App
             if (termekBoxT.Items.Count > 0) termekBoxT.SelectedIndex = 0;
         }
 
+        // Event Handlers
         private void KategoriaFileButton_Click(object sender, EventArgs e)
         {
-            using var dialog = new OpenFileDialog
-            {
-                Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*",
-                Title = "Select a category JSON file"
-            };
+            currentCategoryFilePath = fileDialogService.ShowOpenFileDialog(
+                "JSON files (*.json)|*.json|All files (*.*)|*.*",
+                "Select a category JSON file");
 
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (!string.IsNullOrEmpty(currentCategoryFilePath))
             {
-                currentCategoryFilePath = dialog.FileName;
-                LoadCategoryFile(currentCategoryFilePath);
+                categories = categoryManager.LoadFromFile(currentCategoryFilePath);
+                PopulateCategories();
             }
         }
 
         private void termekFileButton_Click(object sender, EventArgs e)
         {
-            using var dialog = new OpenFileDialog
-            {
-                Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*",
-                Title = "Select an item JSON file"
-            };
+            currentItemFilePath = fileDialogService.ShowOpenFileDialog(
+                "JSON files (*.json)|*.json|All files (*.*)|*.*",
+                "Select an item JSON file");
 
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (!string.IsNullOrEmpty(currentItemFilePath))
             {
-                currentItemFilePath = dialog.FileName;
-                LoadItemFile(currentItemFilePath);
+                items = itemManager.LoadFromFile(currentItemFilePath);
+                PopulateItems();
             }
         }
 
@@ -145,7 +154,7 @@ namespace Insect_Betyar_Admin_App
                 string selectedCategory = kategoriaBoxT.SelectedItem.ToString();
                 categories.RemoveAll(c => c.name == selectedCategory);
                 PopulateCategories();
-                SaveJsonFile(currentCategoryFilePath, categories);
+                categoryManager.SaveToFile(currentCategoryFilePath, categories);
                 CheckFileLoaded(currentCategoryFilePath, "kategória");
             }
             catch (Exception ex)
@@ -167,7 +176,7 @@ namespace Insect_Betyar_Admin_App
                 string selectedItem = termekBoxT.SelectedItem.ToString();
                 items.RemoveAll(i => i.name == selectedItem);
                 PopulateItems();
-                SaveJsonFile(currentItemFilePath, items);
+                itemManager.SaveToFile(currentItemFilePath, items);
                 CheckFileLoaded(currentItemFilePath, "termék");
             }
             catch (Exception ex)
@@ -178,65 +187,14 @@ namespace Insect_Betyar_Admin_App
 
         private void kepkategoriaFeltoltButton_Click(object sender, EventArgs e)
         {
-            string fullImagePath = SelectImageFileFullPath("Select an image file for the item"); // Get the full path directly
-            if (!string.IsNullOrEmpty(fullImagePath))
-            {
-                try
-                {
-                    // Load and display the image using the full path
-                    kategoriaHozPictureBox.Image = Image.FromFile(fullImagePath);
-                    kategoriaHozPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-
-                    // Update selectedImagePath to the relative path (for saving to JSON)
-                    selectedImagePath = "/images/" + Path.GetFileName(fullImagePath);
-                }
-                catch (Exception ex)
-                {
-                    ShowErrorMessage($"Hiba a kép megjelenítésekor: {ex.Message}\nPath: {fullImagePath}", "Image Display Error");
-                }
-            }
+            LoadImage(kategoriaHozPictureBox);
         }
 
         private void keptermekfeltButton_Click(object sender, EventArgs e)
         {
-            string fullImagePath = SelectImageFileFullPath("Select an image file for the item"); // Get the full path directly
-            if (!string.IsNullOrEmpty(fullImagePath))
-            {
-                try
-                {
-                    // Load and display the image using the full path
-                    termekHozPictureBox.Image = Image.FromFile(fullImagePath);
-                    termekHozPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-
-                    // Update selectedImagePath to the relative path (for saving to JSON)
-                    selectedImagePath = "/images/" + Path.GetFileName(fullImagePath);
-                }
-                catch (Exception ex)
-                {
-                    ShowErrorMessage($"Hiba a kép megjelenítésekor: {ex.Message}\nPath: {fullImagePath}", "Image Display Error");
-                }
-            }
+            LoadImage(termekHozPictureBox);
         }
 
-        // New method to return the full file path directly
-        private string? SelectImageFileFullPath(string title)
-        {
-            using var dialog = new OpenFileDialog
-            {
-                Filter = "Image files (*.jpg;*.jpeg;*.png;*.gif)|*.jpg;*.jpeg;*.png;*.gif|All files (*.*)|*.*",
-                Title = title
-            };
-
-            try
-            {
-                return dialog.ShowDialog() == DialogResult.OK ? dialog.FileName : null;
-            }
-            catch (Exception ex)
-            {
-                ShowErrorMessage($"Hiba a kép kiválasztásakor: {ex.Message}", "Error");
-                return null;
-            }
-        }
         private void kategoriaMentesButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(nevkategoriaTextBox.Text))
@@ -260,7 +218,7 @@ namespace Insect_Betyar_Admin_App
 
                 categories.Add(newCategory);
                 PopulateCategories();
-                SaveJsonFile(currentCategoryFilePath, categories);
+                categoryManager.SaveToFile(currentCategoryFilePath, categories);
                 ClearKategoryInput();
                 CheckFileLoaded(currentCategoryFilePath, "kategória");
             }
@@ -288,7 +246,7 @@ namespace Insect_Betyar_Admin_App
 
                 items.Add(newItem);
                 PopulateItems();
-                SaveJsonFile(currentItemFilePath, items);
+                itemManager.SaveToFile(currentItemFilePath, items);
                 ClearItemInput();
                 CheckFileLoaded(currentItemFilePath, "termék");
             }
@@ -298,19 +256,53 @@ namespace Insect_Betyar_Admin_App
             }
         }
 
-        private string? SelectImageFile(string title)
+        private void nevkategoriaTextBox_TextChanged(object sender, EventArgs e)
         {
-            using var dialog = new OpenFileDialog
-            {
-                Filter = "Image files (*.jpg;*.jpeg;*.png;*.gif)|*.jpg;*.jpeg;*.png;*.gif|All files (*.*)|*.*",
-                Title = title
-            };
+            // Keep this empty event handler since it exists in the original
+        }
 
+        // Helper Methods
+        private void LoadImage(PictureBox pictureBox)
+        {
+            string? fullImagePath = SelectImageFileFullPath("Select an image file for the item");
+            if (!string.IsNullOrEmpty(fullImagePath))
+            {
+                try
+                {
+                    pictureBox.Image = Image.FromFile(fullImagePath);
+                    pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                    selectedImagePath = "/images/" + Path.GetFileName(fullImagePath);
+                }
+                catch (Exception ex)
+                {
+                    ShowErrorMessage($"Hiba a kép megjelenítésekor: {ex.Message}\nPath: {fullImagePath}", "Image Display Error");
+                }
+            }
+        }
+
+        private string? SelectImageFileFullPath(string title)
+        {
             try
             {
-                return dialog.ShowDialog() == DialogResult.OK
-                    ? "/images/" + Path.GetFileName(dialog.FileName)
-                    : null;
+                return fileDialogService.ShowOpenFileDialog(
+                    "Image files (*.jpg;*.jpeg;*.png;*.gif)|*.jpg;*.jpeg;*.png;*.gif|All files (*.*)|*.*",
+                    title);
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage($"Hiba a kép kiválasztásakor: {ex.Message}", "Error");
+                return null;
+            }
+        }
+
+        private string? SelectImageFile(string title)
+        {
+            try
+            {
+                string? filePath = fileDialogService.ShowOpenFileDialog(
+                    "Image files (*.jpg;*.jpeg;*.png;*.gif)|*.jpg;*.jpeg;*.png;*.gif|All files (*.*)|*.*",
+                    title);
+                return filePath != null ? "/images/" + Path.GetFileName(filePath) : null;
             }
             catch (Exception ex)
             {
@@ -377,10 +369,6 @@ namespace Insect_Betyar_Admin_App
         private void ShowWarningMessage(string message, string title) =>
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-        private void nevkategoriaTextBox_TextChanged(object sender, EventArgs e)
-        {
-            // Keep this empty event handler since it exists in the original
-        }
 
     }
 }
