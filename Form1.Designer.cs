@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            termekHozPictureBox = new PictureBox();
             termekMentesButton = new Button();
             keptermekfeltButton = new Button();
             kategoriaComboBox = new ComboBox();
@@ -41,26 +42,29 @@
             leirasLabel = new Label();
             nevtermektextBox = new TextBox();
             NevLabel = new Label();
+            tabPage3 = new TabPage();
+            termekTorlesButton = new Button();
+            termekBoxT = new ComboBox();
+            label3 = new Label();
+            tabPage5 = new TabPage();
             tabPage2 = new TabPage();
             kategoriaMentesButton = new Button();
             kepkategoriaFeltoltButton = new Button();
             nevkategoriaTextBox = new TextBox();
             label1 = new Label();
-            tabPage3 = new TabPage();
-            termekTorlesButton = new Button();
-            termekBoxT = new ComboBox();
-            label3 = new Label();
             tabPage4 = new TabPage();
             kategoriaTorlesButton = new Button();
             kategoriaBoxT = new ComboBox();
             label2 = new Label();
+            tabPage6 = new TabPage();
             pictureBox1 = new PictureBox();
             termekFileButton = new Button();
             KategoriaFileButton = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)termekHozPictureBox).BeginInit();
             tabPage3.SuspendLayout();
+            tabPage2.SuspendLayout();
             tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -68,9 +72,11 @@
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage5);
+            tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage6);
             tabControl1.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 238);
             tabControl1.ImeMode = ImeMode.NoControl;
             tabControl1.Location = new Point(122, 12);
@@ -78,12 +84,13 @@
             tabControl1.Name = "tabControl1";
             tabControl1.RightToLeft = RightToLeft.No;
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(569, 454);
+            tabControl1.Size = new Size(605, 525);
             tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = Color.FromArgb(41, 48, 53);
+            tabPage1.Controls.Add(termekHozPictureBox);
             tabPage1.Controls.Add(termekMentesButton);
             tabPage1.Controls.Add(keptermekfeltButton);
             tabPage1.Controls.Add(kategoriaComboBox);
@@ -98,16 +105,24 @@
             tabPage1.Location = new Point(4, 28);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(561, 422);
+            tabPage1.Size = new Size(597, 493);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "+ Termék";
+            // 
+            // termekHozPictureBox
+            // 
+            termekHozPictureBox.Location = new Point(341, 74);
+            termekHozPictureBox.Name = "termekHozPictureBox";
+            termekHozPictureBox.Size = new Size(134, 108);
+            termekHozPictureBox.TabIndex = 11;
+            termekHozPictureBox.TabStop = false;
             // 
             // termekMentesButton
             // 
             termekMentesButton.BackColor = Color.ForestGreen;
             termekMentesButton.Cursor = Cursors.Hand;
             termekMentesButton.FlatStyle = FlatStyle.Popup;
-            termekMentesButton.Location = new Point(216, 367);
+            termekMentesButton.Location = new Point(215, 443);
             termekMentesButton.Name = "termekMentesButton";
             termekMentesButton.Size = new Size(175, 38);
             termekMentesButton.TabIndex = 10;
@@ -120,7 +135,7 @@
             keptermekfeltButton.BackColor = Color.FromArgb(0, 167, 218);
             keptermekfeltButton.Cursor = Cursors.Hand;
             keptermekfeltButton.FlatStyle = FlatStyle.Popup;
-            keptermekfeltButton.Location = new Point(216, 74);
+            keptermekfeltButton.Location = new Point(137, 74);
             keptermekfeltButton.Name = "keptermekfeltButton";
             keptermekfeltButton.Size = new Size(175, 38);
             keptermekfeltButton.TabIndex = 9;
@@ -136,7 +151,7 @@
             kategoriaComboBox.FlatStyle = FlatStyle.Flat;
             kategoriaComboBox.ForeColor = SystemColors.Menu;
             kategoriaComboBox.FormattingEnabled = true;
-            kategoriaComboBox.Location = new Point(138, 314);
+            kategoriaComboBox.Location = new Point(137, 390);
             kategoriaComboBox.Name = "kategoriaComboBox";
             kategoriaComboBox.Size = new Size(338, 27);
             kategoriaComboBox.TabIndex = 8;
@@ -144,7 +159,7 @@
             // kategoriaLabel
             // 
             kategoriaLabel.AutoSize = true;
-            kategoriaLabel.Location = new Point(43, 314);
+            kategoriaLabel.Location = new Point(42, 390);
             kategoriaLabel.Name = "kategoriaLabel";
             kategoriaLabel.Size = new Size(89, 19);
             kategoriaLabel.TabIndex = 7;
@@ -155,7 +170,7 @@
             leirasTexBox.BackColor = Color.FromArgb(33, 34, 36);
             leirasTexBox.BorderStyle = BorderStyle.FixedSingle;
             leirasTexBox.ForeColor = SystemColors.Window;
-            leirasTexBox.Location = new Point(137, 133);
+            leirasTexBox.Location = new Point(136, 209);
             leirasTexBox.Name = "leirasTexBox";
             leirasTexBox.Size = new Size(339, 96);
             leirasTexBox.TabIndex = 6;
@@ -166,7 +181,7 @@
             artextBox.BackColor = Color.FromArgb(33, 34, 36);
             artextBox.BorderStyle = BorderStyle.FixedSingle;
             artextBox.ForeColor = SystemColors.Menu;
-            artextBox.Location = new Point(137, 255);
+            artextBox.Location = new Point(136, 331);
             artextBox.Name = "artextBox";
             artextBox.Size = new Size(339, 27);
             artextBox.TabIndex = 5;
@@ -174,7 +189,7 @@
             // arLabel
             // 
             arLabel.AutoSize = true;
-            arLabel.Location = new Point(103, 257);
+            arLabel.Location = new Point(102, 333);
             arLabel.Name = "arLabel";
             arLabel.Size = new Size(28, 19);
             arLabel.TabIndex = 4;
@@ -183,7 +198,7 @@
             // leirasLabel
             // 
             leirasLabel.AutoSize = true;
-            leirasLabel.Location = new Point(74, 133);
+            leirasLabel.Location = new Point(73, 209);
             leirasLabel.Name = "leirasLabel";
             leirasLabel.Size = new Size(58, 19);
             leirasLabel.TabIndex = 2;
@@ -208,6 +223,63 @@
             NevLabel.TabIndex = 0;
             NevLabel.Text = "Név";
             // 
+            // tabPage3
+            // 
+            tabPage3.BackColor = Color.FromArgb(41, 48, 53);
+            tabPage3.Controls.Add(termekTorlesButton);
+            tabPage3.Controls.Add(termekBoxT);
+            tabPage3.Controls.Add(label3);
+            tabPage3.ForeColor = SystemColors.Menu;
+            tabPage3.Location = new Point(4, 28);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(597, 493);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "- Termék";
+            // 
+            // termekTorlesButton
+            // 
+            termekTorlesButton.BackColor = Color.Maroon;
+            termekTorlesButton.Cursor = Cursors.Hand;
+            termekTorlesButton.FlatStyle = FlatStyle.Popup;
+            termekTorlesButton.Location = new Point(193, 156);
+            termekTorlesButton.Name = "termekTorlesButton";
+            termekTorlesButton.Size = new Size(175, 38);
+            termekTorlesButton.TabIndex = 18;
+            termekTorlesButton.Text = "Termék törlése";
+            termekTorlesButton.UseVisualStyleBackColor = false;
+            termekTorlesButton.Click += termekTorlesButton_Click;
+            // 
+            // termekBoxT
+            // 
+            termekBoxT.BackColor = Color.FromArgb(33, 34, 36);
+            termekBoxT.Cursor = Cursors.Hand;
+            termekBoxT.DropDownStyle = ComboBoxStyle.DropDownList;
+            termekBoxT.FlatStyle = FlatStyle.Flat;
+            termekBoxT.ForeColor = SystemColors.Menu;
+            termekBoxT.FormattingEnabled = true;
+            termekBoxT.Location = new Point(126, 111);
+            termekBoxT.Name = "termekBoxT";
+            termekBoxT.Size = new Size(338, 27);
+            termekBoxT.TabIndex = 17;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(48, 114);
+            label3.Name = "label3";
+            label3.Size = new Size(72, 19);
+            label3.TabIndex = 16;
+            label3.Text = "Termék";
+            // 
+            // tabPage5
+            // 
+            tabPage5.BackColor = Color.FromArgb(41, 48, 53);
+            tabPage5.Location = new Point(4, 28);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(597, 493);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "O Termék ";
+            // 
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(41, 48, 53);
@@ -219,7 +291,7 @@
             tabPage2.Location = new Point(4, 28);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(561, 422);
+            tabPage2.Size = new Size(597, 493);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "+ Kategoria";
             // 
@@ -269,54 +341,6 @@
             label1.TabIndex = 11;
             label1.Text = "Név";
             // 
-            // tabPage3
-            // 
-            tabPage3.BackColor = Color.FromArgb(41, 48, 53);
-            tabPage3.Controls.Add(termekTorlesButton);
-            tabPage3.Controls.Add(termekBoxT);
-            tabPage3.Controls.Add(label3);
-            tabPage3.ForeColor = SystemColors.Menu;
-            tabPage3.Location = new Point(4, 28);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(561, 422);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "- Termék";
-            // 
-            // termekTorlesButton
-            // 
-            termekTorlesButton.BackColor = Color.Maroon;
-            termekTorlesButton.Cursor = Cursors.Hand;
-            termekTorlesButton.FlatStyle = FlatStyle.Popup;
-            termekTorlesButton.Location = new Point(193, 156);
-            termekTorlesButton.Name = "termekTorlesButton";
-            termekTorlesButton.Size = new Size(175, 38);
-            termekTorlesButton.TabIndex = 18;
-            termekTorlesButton.Text = "Termék törlése";
-            termekTorlesButton.UseVisualStyleBackColor = false;
-            termekTorlesButton.Click += termekTorlesButton_Click;
-            // 
-            // termekBoxT
-            // 
-            termekBoxT.BackColor = Color.FromArgb(33, 34, 36);
-            termekBoxT.Cursor = Cursors.Hand;
-            termekBoxT.DropDownStyle = ComboBoxStyle.DropDownList;
-            termekBoxT.FlatStyle = FlatStyle.Flat;
-            termekBoxT.ForeColor = SystemColors.Menu;
-            termekBoxT.FormattingEnabled = true;
-            termekBoxT.Location = new Point(126, 111);
-            termekBoxT.Name = "termekBoxT";
-            termekBoxT.Size = new Size(338, 27);
-            termekBoxT.TabIndex = 17;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(48, 114);
-            label3.Name = "label3";
-            label3.Size = new Size(72, 19);
-            label3.TabIndex = 16;
-            label3.Text = "Termék";
-            // 
             // tabPage4
             // 
             tabPage4.BackColor = Color.FromArgb(41, 48, 53);
@@ -326,7 +350,7 @@
             tabPage4.ForeColor = SystemColors.Menu;
             tabPage4.Location = new Point(4, 28);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(561, 422);
+            tabPage4.Size = new Size(597, 493);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "- Kategoria";
             // 
@@ -364,6 +388,15 @@
             label2.Size = new Size(89, 19);
             label2.TabIndex = 9;
             label2.Text = "Kategória";
+            // 
+            // tabPage6
+            // 
+            tabPage6.BackColor = Color.FromArgb(41, 48, 53);
+            tabPage6.Location = new Point(4, 28);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Size = new Size(597, 493);
+            tabPage6.TabIndex = 5;
+            tabPage6.Text = "O Kategória";
             // 
             // pictureBox1
             // 
@@ -409,7 +442,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(33, 37, 41);
-            ClientSize = new Size(703, 491);
+            ClientSize = new Size(755, 549);
             Controls.Add(KategoriaFileButton);
             Controls.Add(termekFileButton);
             Controls.Add(pictureBox1);
@@ -420,10 +453,11 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
-            tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)termekHozPictureBox).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
             tabPage4.ResumeLayout(false);
             tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -459,5 +493,8 @@
         private Button kategoriaTorlesButton;
         private ComboBox kategoriaBoxT;
         private Label label2;
+        private TabPage tabPage5;
+        private TabPage tabPage6;
+        private PictureBox termekHozPictureBox;
     }
 }
