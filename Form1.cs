@@ -25,7 +25,7 @@ namespace Insect_Betyar_Admin_App
         private List<Item> items = new List<Item>();
         private string currentCategoryFilePath;
         private string currentItemFilePath;
-        private string selectedImagePath;
+        private string? selectedImagePath;
 
         private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true };
 
@@ -183,9 +183,44 @@ namespace Insect_Betyar_Admin_App
 
         private void keptermekfeltButton_Click(object sender, EventArgs e)
         {
-            selectedImagePath = SelectImageFile("Select an image file for the item");
+            string fullImagePath = SelectImageFileFullPath("Select an image file for the item"); // Get the full path directly
+            if (!string.IsNullOrEmpty(fullImagePath))
+            {
+                try
+                {
+                    // Load and display the image using the full path
+                    termekHozPictureBox.Image = Image.FromFile(fullImagePath);
+                    termekHozPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    // Update selectedImagePath to the relative path (for saving to JSON)
+                    selectedImagePath = "/images/" + Path.GetFileName(fullImagePath);
+                }
+                catch (Exception ex)
+                {
+                    ShowErrorMessage($"Hiba a kép megjelenítésekor: {ex.Message}\nPath: {fullImagePath}", "Image Display Error");
+                }
+            }
         }
 
+        // New method to return the full file path directly
+        private string? SelectImageFileFullPath(string title)
+        {
+            using var dialog = new OpenFileDialog
+            {
+                Filter = "Image files (*.jpg;*.jpeg;*.png;*.gif)|*.jpg;*.jpeg;*.png;*.gif|All files (*.*)|*.*",
+                Title = title
+            };
+
+            try
+            {
+                return dialog.ShowDialog() == DialogResult.OK ? dialog.FileName : null;
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage($"Hiba a kép kiválasztásakor: {ex.Message}", "Error");
+                return null;
+            }
+        }
         private void kategoriaMentesButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(nevkategoriaTextBox.Text))
@@ -248,7 +283,7 @@ namespace Insect_Betyar_Admin_App
             }
         }
 
-        private string SelectImageFile(string title)
+        private string? SelectImageFile(string title)
         {
             using var dialog = new OpenFileDialog
             {
@@ -305,6 +340,7 @@ namespace Insect_Betyar_Admin_App
             leirasTexBox.Text = "";
             artextBox.Text = "";
             selectedImagePath = null;
+            termekHozPictureBox.Image = null;
         }
 
         private void CheckFileLoaded(string filePath, string type)
