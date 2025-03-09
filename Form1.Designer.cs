@@ -33,7 +33,7 @@
             tabPage1 = new TabPage();
             termekTorlesButton = new Button();
             termekBoxT = new ComboBox();
-            button2 = new Button();
+            termekModositasButton = new Button();
             label4 = new Label();
             termekHozPictureBox = new PictureBox();
             termekMentesButton = new Button();
@@ -47,6 +47,8 @@
             nevtermektextBox = new TextBox();
             NevLabel = new Label();
             tabPage2 = new TabPage();
+            label2 = new Label();
+            kategoriaModositasButton = new Button();
             kategoriaTorlesButton = new Button();
             kategoriaBoxT = new ComboBox();
             kategoriaHozPictureBox = new PictureBox();
@@ -57,8 +59,6 @@
             pictureBox1 = new PictureBox();
             termekFileButton = new Button();
             KategoriaFileButton = new Button();
-            button1 = new Button();
-            label2 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)termekHozPictureBox).BeginInit();
@@ -86,7 +86,7 @@
             tabPage1.BackColor = Color.FromArgb(41, 48, 53);
             tabPage1.Controls.Add(termekTorlesButton);
             tabPage1.Controls.Add(termekBoxT);
-            tabPage1.Controls.Add(button2);
+            tabPage1.Controls.Add(termekModositasButton);
             tabPage1.Controls.Add(label4);
             tabPage1.Controls.Add(termekHozPictureBox);
             tabPage1.Controls.Add(termekMentesButton);
@@ -113,9 +113,9 @@
             termekTorlesButton.Cursor = Cursors.Hand;
             termekTorlesButton.FlatStyle = FlatStyle.Popup;
             termekTorlesButton.Font = new Font("Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            termekTorlesButton.Location = new Point(358, 436);
+            termekTorlesButton.Location = new Point(293, 436);
             termekTorlesButton.Name = "termekTorlesButton";
-            termekTorlesButton.Size = new Size(98, 38);
+            termekTorlesButton.Size = new Size(111, 38);
             termekTorlesButton.TabIndex = 22;
             termekTorlesButton.Text = "Termék törlése";
             termekTorlesButton.UseVisualStyleBackColor = false;
@@ -134,18 +134,19 @@
             termekBoxT.Size = new Size(338, 27);
             termekBoxT.TabIndex = 21;
             // 
-            // button2
+            // termekModositasButton
             // 
-            button2.BackColor = Color.Indigo;
-            button2.Cursor = Cursors.Hand;
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.Font = new Font("Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            button2.Location = new Point(232, 436);
-            button2.Name = "button2";
-            button2.Size = new Size(111, 38);
-            button2.TabIndex = 20;
-            button2.Text = "Termék módosítása";
-            button2.UseVisualStyleBackColor = false;
+            termekModositasButton.BackColor = Color.Indigo;
+            termekModositasButton.Cursor = Cursors.Hand;
+            termekModositasButton.FlatStyle = FlatStyle.Popup;
+            termekModositasButton.Font = new Font("Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            termekModositasButton.Location = new Point(176, 436);
+            termekModositasButton.Name = "termekModositasButton";
+            termekModositasButton.Size = new Size(111, 38);
+            termekModositasButton.TabIndex = 20;
+            termekModositasButton.Text = "Termék módosítása";
+            termekModositasButton.UseVisualStyleBackColor = false;
+            termekModositasButton.Click += termekModositasButton_Click;
             // 
             // label4
             // 
@@ -170,9 +171,9 @@
             termekMentesButton.Cursor = Cursors.Hand;
             termekMentesButton.FlatStyle = FlatStyle.Popup;
             termekMentesButton.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            termekMentesButton.Location = new Point(118, 436);
+            termekMentesButton.Location = new Point(228, 436);
             termekMentesButton.Name = "termekMentesButton";
-            termekMentesButton.Size = new Size(98, 38);
+            termekMentesButton.Size = new Size(111, 38);
             termekMentesButton.TabIndex = 10;
             termekMentesButton.Text = "Termék hozzáadása";
             termekMentesButton.UseVisualStyleBackColor = false;
@@ -275,7 +276,7 @@
             // 
             tabPage2.BackColor = Color.FromArgb(41, 48, 53);
             tabPage2.Controls.Add(label2);
-            tabPage2.Controls.Add(button1);
+            tabPage2.Controls.Add(kategoriaModositasButton);
             tabPage2.Controls.Add(kategoriaTorlesButton);
             tabPage2.Controls.Add(kategoriaBoxT);
             tabPage2.Controls.Add(kategoriaHozPictureBox);
@@ -287,9 +288,32 @@
             tabPage2.Location = new Point(4, 28);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(597, 493);
+            tabPage2.Size = new Size(500, 493);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "+ Kategoria";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(11, 55);
+            label2.Name = "label2";
+            label2.Size = new Size(99, 19);
+            label2.TabIndex = 22;
+            label2.Text = "Kategoriák";
+            // 
+            // kategoriaModositasButton
+            // 
+            kategoriaModositasButton.BackColor = Color.Indigo;
+            kategoriaModositasButton.Cursor = Cursors.Hand;
+            kategoriaModositasButton.FlatStyle = FlatStyle.Popup;
+            kategoriaModositasButton.Font = new Font("Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            kategoriaModositasButton.Location = new Point(164, 273);
+            kategoriaModositasButton.Name = "kategoriaModositasButton";
+            kategoriaModositasButton.Size = new Size(110, 38);
+            kategoriaModositasButton.TabIndex = 21;
+            kategoriaModositasButton.Text = "Kategoria módosítása";
+            kategoriaModositasButton.UseVisualStyleBackColor = false;
+            kategoriaModositasButton.Click += kategoriaModositasButton_Click;
             // 
             // kategoriaTorlesButton
             // 
@@ -297,9 +321,9 @@
             kategoriaTorlesButton.Cursor = Cursors.Hand;
             kategoriaTorlesButton.FlatStyle = FlatStyle.Popup;
             kategoriaTorlesButton.Font = new Font("Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            kategoriaTorlesButton.Location = new Point(357, 273);
+            kategoriaTorlesButton.Location = new Point(293, 273);
             kategoriaTorlesButton.Name = "kategoriaTorlesButton";
-            kategoriaTorlesButton.Size = new Size(98, 38);
+            kategoriaTorlesButton.Size = new Size(110, 38);
             kategoriaTorlesButton.TabIndex = 17;
             kategoriaTorlesButton.Text = "Kategoria törlése";
             kategoriaTorlesButton.UseVisualStyleBackColor = false;
@@ -332,9 +356,9 @@
             kategoriaMentesButton.Cursor = Cursors.Hand;
             kategoriaMentesButton.FlatStyle = FlatStyle.Popup;
             kategoriaMentesButton.Font = new Font("Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            kategoriaMentesButton.Location = new Point(116, 273);
+            kategoriaMentesButton.Location = new Point(229, 273);
             kategoriaMentesButton.Name = "kategoriaMentesButton";
-            kategoriaMentesButton.Size = new Size(98, 38);
+            kategoriaMentesButton.Size = new Size(110, 38);
             kategoriaMentesButton.TabIndex = 14;
             kategoriaMentesButton.Text = "Kategoria mentése";
             kategoriaMentesButton.UseVisualStyleBackColor = false;
@@ -379,7 +403,7 @@
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.Location = new Point(6, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(110, 107);
+            pictureBox1.Size = new Size(110, 108);
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             pictureBox1.UseWaitCursor = true;
@@ -390,7 +414,7 @@
             termekFileButton.FlatStyle = FlatStyle.Popup;
             termekFileButton.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
             termekFileButton.ForeColor = Color.White;
-            termekFileButton.Location = new Point(6, 151);
+            termekFileButton.Location = new Point(6, 229);
             termekFileButton.Name = "termekFileButton";
             termekFileButton.Size = new Size(110, 71);
             termekFileButton.TabIndex = 3;
@@ -404,35 +428,13 @@
             KategoriaFileButton.FlatStyle = FlatStyle.Popup;
             KategoriaFileButton.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
             KategoriaFileButton.ForeColor = Color.White;
-            KategoriaFileButton.Location = new Point(6, 251);
+            KategoriaFileButton.Location = new Point(6, 141);
             KategoriaFileButton.Name = "KategoriaFileButton";
             KategoriaFileButton.Size = new Size(110, 71);
             KategoriaFileButton.TabIndex = 4;
             KategoriaFileButton.Text = "Kategoria File";
             KategoriaFileButton.UseVisualStyleBackColor = false;
             KategoriaFileButton.Click += KategoriaFileButton_Click;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.Indigo;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            button1.Location = new Point(238, 273);
-            button1.Name = "button1";
-            button1.Size = new Size(98, 38);
-            button1.TabIndex = 21;
-            button1.Text = "Kategoria módosítása";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(11, 55);
-            label2.Name = "label2";
-            label2.Size = new Size(99, 19);
-            label2.TabIndex = 22;
-            label2.Text = "Kategoriák";
             // 
             // Form1
             // 
@@ -484,12 +486,12 @@
         private PictureBox termekHozPictureBox;
         private PictureBox kategoriaHozPictureBox;
         private Label label4;
-        private Button button2;
+        private Button termekModositasButton;
         private Button termekTorlesButton;
         private ComboBox termekBoxT;
         private Button kategoriaTorlesButton;
         private ComboBox kategoriaBoxT;
         private Label label2;
-        private Button button1;
+        private Button kategoriaModositasButton;
     }
 }

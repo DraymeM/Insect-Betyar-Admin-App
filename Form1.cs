@@ -86,6 +86,26 @@ namespace Insect_Betyar_Admin_App
         public Form1()
         {
             InitializeComponent();
+            // Wire up the SelectedIndexChanged events
+            kategoriaBoxT.SelectedIndexChanged += new EventHandler(kategoriaBoxT_SelectedIndexChanged);
+            termekBoxT.SelectedIndexChanged += new EventHandler(termekBoxT_SelectedIndexChanged);
+            // Wire up the new kategoriaModositasButton event
+            kategoriaModositasButton.Click += new EventHandler(kategoriaModositasButton_Click);
+
+            // Set initial visibility based on no selection
+            UpdateButtonVisibility();
+        }
+
+        // Helper to update button visibility
+        private void UpdateButtonVisibility()
+        {
+            kategoriaMentesButton.Visible = kategoriaBoxT.SelectedIndex == -1;
+            kategoriaModositasButton.Visible = kategoriaBoxT.SelectedIndex != -1;
+            kategoriaTorlesButton.Visible = kategoriaBoxT.SelectedIndex != -1;
+
+            termekMentesButton.Visible = termekBoxT.SelectedIndex == -1;
+            termekModositasButton.Visible = termekBoxT.SelectedIndex != -1;
+            termekTorlesButton.Visible = termekBoxT.SelectedIndex != -1;
         }
 
         // UI Population
@@ -101,7 +121,8 @@ namespace Insect_Betyar_Admin_App
             }
 
             if (kategoriaComboBox.Items.Count > 0) kategoriaComboBox.SelectedIndex = 0;
-            if (kategoriaBoxT.Items.Count > 0) kategoriaBoxT.SelectedIndex = 0;
+            // No automatic selection for kategoriaBoxT
+            UpdateButtonVisibility();
         }
 
         private void PopulateItems()
@@ -111,7 +132,8 @@ namespace Insect_Betyar_Admin_App
             {
                 termekBoxT.Items.Add(item.name);
             }
-            if (termekBoxT.Items.Count > 0) termekBoxT.SelectedIndex = 0;
+            // No automatic selection for termekBoxT
+            UpdateButtonVisibility();
         }
 
         // Event Handlers
@@ -156,6 +178,8 @@ namespace Insect_Betyar_Admin_App
                 PopulateCategories();
                 categoryManager.SaveToFile(currentCategoryFilePath, categories);
                 CheckFileLoaded(currentCategoryFilePath, "kategória");
+                ClearKategoryInput();
+                MessageBox.Show("Sikeresen törölés", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -178,6 +202,8 @@ namespace Insect_Betyar_Admin_App
                 PopulateItems();
                 itemManager.SaveToFile(currentItemFilePath, items);
                 CheckFileLoaded(currentItemFilePath, "termék");
+                ClearItemInput();
+                MessageBox.Show("Sikeresen törölte a nevét", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -197,6 +223,12 @@ namespace Insect_Betyar_Admin_App
 
         private void kategoriaMentesButton_Click(object sender, EventArgs e)
         {
+            if (kategoriaBoxT.SelectedIndex != -1)
+            {
+                ShowWarningMessage("Csak akkor menthetsz új kategóriát, ha nincs kiválasztva meglévõ!", "Invalid Operation");
+                return;
+            }
+
             if (string.IsNullOrEmpty(nevkategoriaTextBox.Text))
             {
                 ShowWarningMessage("Kérlek írd be a kategória nevét!", "Missing Name");
@@ -221,6 +253,7 @@ namespace Insect_Betyar_Admin_App
                 categoryManager.SaveToFile(currentCategoryFilePath, categories);
                 ClearKategoryInput();
                 CheckFileLoaded(currentCategoryFilePath, "kategória");
+                MessageBox.Show("Sikeresen mentetés", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -230,6 +263,12 @@ namespace Insect_Betyar_Admin_App
 
         private void termekMentesButton_Click(object sender, EventArgs e)
         {
+            if (termekBoxT.SelectedIndex != -1)
+            {
+                ShowWarningMessage("Csak akkor menthetsz új terméket, ha nincs kiválasztva meglévõ!", "Invalid Operation");
+                return;
+            }
+
             if (!ValidateItemInput()) return;
 
             try
@@ -249,6 +288,7 @@ namespace Insect_Betyar_Admin_App
                 itemManager.SaveToFile(currentItemFilePath, items);
                 ClearItemInput();
                 CheckFileLoaded(currentItemFilePath, "termék");
+                MessageBox.Show("Sikeresen mentés", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -256,9 +296,137 @@ namespace Insect_Betyar_Admin_App
             }
         }
 
+        private void termekModositasButton_Click(object sender, EventArgs e)
+        {
+            if (termekBoxT.SelectedIndex == -1)
+            {
+                ShowWarningMessage("Kérlek válassz egy terméket a módosításhoz!", "No Selection");
+                return;
+            }
+
+            if (!ValidateItemInput()) return;
+
+            try
+            {
+                string selectedItemName = termekBoxT.SelectedItem.ToString();
+                Item selectedItem = items.FirstOrDefault(i => i.name == selectedItemName);
+
+                if (selectedItem != null)
+                {
+                    // Update the selected item's attributes, including picture
+                    selectedItem.name = nevtermektextBox.Text;
+                    selectedItem.picture = selectedImagePath; // Override with new image
+                    selectedItem.description = leirasTexBox.Text;
+                    selectedItem.price = artextBox.Text;
+                    selectedItem.category = kategoriaComboBox.SelectedItem.ToString();
+
+                    // Refresh UI, save changes, clear fields, and deselect item
+                    PopulateItems();
+                    itemManager.SaveToFile(currentItemFilePath, items);
+                    ClearItemInput();
+                    termekBoxT.SelectedIndex = -1;
+                    CheckFileLoaded(currentItemFilePath, "termék");
+                    MessageBox.Show("Sikeresen módosítotás", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    ShowErrorMessage("A kiválasztott termék nem található!", "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage($"Hiba a termék módosítása közben: {ex.Message}", "Error");
+            }
+        }
+
+        private void kategoriaModositasButton_Click(object sender, EventArgs e)
+        {
+            if (kategoriaBoxT.SelectedIndex == -1)
+            {
+                ShowWarningMessage("Kérlek válassz egy kategóriát a módosításhoz!", "No Selection");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(nevkategoriaTextBox.Text))
+            {
+                ShowWarningMessage("Kérlek írd be a kategória nevét!", "Missing Name");
+                return;
+            }
+            if (string.IsNullOrEmpty(selectedImagePath))
+            {
+                ShowWarningMessage("Elõször válassz ki egy kép fájlt!", "Missing Image");
+                return;
+            }
+
+            try
+            {
+                string selectedCategoryName = kategoriaBoxT.SelectedItem.ToString();
+                Category selectedCategory = categories.FirstOrDefault(c => c.name == selectedCategoryName);
+
+                if (selectedCategory != null)
+                {
+                    // Update the selected category's attributes
+                    selectedCategory.name = nevkategoriaTextBox.Text;
+                    selectedCategory.image = selectedImagePath;
+
+                    // Refresh UI, save changes, clear fields, and deselect item
+                    PopulateCategories();
+                    categoryManager.SaveToFile(currentCategoryFilePath, categories);
+                    ClearKategoryInput();
+                    kategoriaBoxT.SelectedIndex = -1;
+                    CheckFileLoaded(currentCategoryFilePath, "kategória");
+                    MessageBox.Show("Sikeresen módosítva a kategória", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    ShowErrorMessage("A kiválasztott kategória nem található!", "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage($"Hiba a kategória módosítása közben: {ex.Message}", "Error");
+            }
+        }
+
         private void nevkategoriaTextBox_TextChanged(object sender, EventArgs e)
         {
             // Keep this empty event handler since it exists in the original
+        }
+
+        private void kategoriaBoxT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (kategoriaBoxT.SelectedIndex != -1)
+            {
+                nevkategoriaTextBox.Text = kategoriaBoxT.SelectedItem.ToString();
+            }
+            UpdateButtonVisibility();
+        }
+
+        private void termekBoxT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (termekBoxT.SelectedIndex != -1)
+            {
+                string selectedItemName = termekBoxT.SelectedItem.ToString();
+                Item selectedItem = items.FirstOrDefault(i => i.name == selectedItemName);
+
+                if (selectedItem != null)
+                {
+                    nevtermektextBox.Text = selectedItem.name;
+                    leirasTexBox.Text = selectedItem.description;
+                    artextBox.Text = selectedItem.price;
+
+                    // Select the matching category in kategoriaComboBox
+                    if (!string.IsNullOrEmpty(selectedItem.category))
+                    {
+                        int categoryIndex = kategoriaComboBox.Items.IndexOf(selectedItem.category);
+                        if (categoryIndex != -1)
+                        {
+                            kategoriaComboBox.SelectedIndex = categoryIndex;
+                        }
+                    }
+                }
+            }
+            UpdateButtonVisibility();
         }
 
         // Helper Methods
@@ -368,7 +536,5 @@ namespace Insect_Betyar_Admin_App
 
         private void ShowWarningMessage(string message, string title) =>
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-
     }
 }
