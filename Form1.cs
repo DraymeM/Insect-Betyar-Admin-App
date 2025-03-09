@@ -100,6 +100,8 @@ namespace Insect_Betyar_Admin_App
             ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(termekBoxT, "Válassz ki egyet a módosításhoz vagy törléshez, amennyiben nem választasz ki semmit akkor hozzáadni tudsz.");
             toolTip.SetToolTip(kategoriaBoxT, "Válassz ki egyet a módosításhoz vagy törléshez, amennyiben nem választasz ki semmit akkor hozzáadni tudsz.");
+            toolTip.SetToolTip(KategoriaFileButton, "Figyelj arra, hogy a categories.json nevû filet tölts ide be.");
+            toolTip.SetToolTip(termekFileButton, "Figyelj arra, hogy a data.json nevû filet tölts ide be.");
         }
 
         // Helper to update button visibility
@@ -542,5 +544,24 @@ namespace Insect_Betyar_Admin_App
 
         private void ShowWarningMessage(string message, string title) =>
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+        private void termekButton_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tabPage1;
+            termekButton.ForeColor = Color.DeepSkyBlue;
+            KategoriaButton.ForeColor = Color.White;
+            termekactivepanel.Visible = true;
+            kategoriaactivepanel.Visible = false;
+        }
+
+        private void KategoriaButton_Click(object sender, EventArgs e)
+        {
+            KategoriaButton.ForeColor = Color.DeepSkyBlue;
+            termekButton.ForeColor = Color.White;
+            tabControl1.SelectedTab = tabPage2;
+            termekactivepanel.Visible = false;
+            kategoriaactivepanel.Visible = true;
+        }
+
     }
 }
