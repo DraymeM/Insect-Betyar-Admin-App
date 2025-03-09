@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Insect-Betyar-Admin-App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8807c8c22621e42d44cc43ba39ebf886177f9bc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4228e026c0e36747fdc5ea6f369feda8e4955fa5")]
 [assembly: System.Reflection.AssemblyProductAttribute("Insect-Betyar-Admin-App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Insect-Betyar-Admin-App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

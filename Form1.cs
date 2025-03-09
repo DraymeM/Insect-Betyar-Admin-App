@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.IO;
+using System.Windows.Forms; // Ensure this is included for ToolTip
 
 namespace Insect_Betyar_Admin_App
 {
@@ -94,6 +95,11 @@ namespace Insect_Betyar_Admin_App
 
             // Set initial visibility based on no selection
             UpdateButtonVisibility();
+
+            // Add tooltips for termekBoxT and kategoriaBoxT
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(termekBoxT, "Válassz ki egyet a módosításhoz vagy törléshez, amennyiben nem választasz ki semmit akkor hozzáadni tudsz.");
+            toolTip.SetToolTip(kategoriaBoxT, "Válassz ki egyet a módosításhoz vagy törléshez, amennyiben nem választasz ki semmit akkor hozzáadni tudsz.");
         }
 
         // Helper to update button visibility
