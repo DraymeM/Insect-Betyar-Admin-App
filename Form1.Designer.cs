@@ -84,6 +84,8 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.FromArgb(41, 48, 53);
+            tabPage1.BackgroundImageLayout = ImageLayout.None;
+            tabPage1.BorderStyle = BorderStyle.FixedSingle;
             tabPage1.Controls.Add(termekTorlesButton);
             tabPage1.Controls.Add(termekBoxT);
             tabPage1.Controls.Add(termekModositasButton);
@@ -110,14 +112,18 @@
             // termekTorlesButton
             // 
             termekTorlesButton.BackColor = Color.Maroon;
+            termekTorlesButton.BackgroundImageLayout = ImageLayout.Zoom;
             termekTorlesButton.Cursor = Cursors.Hand;
             termekTorlesButton.FlatStyle = FlatStyle.Popup;
             termekTorlesButton.Font = new Font("Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            termekTorlesButton.Location = new Point(293, 436);
+            termekTorlesButton.Image = (Image)resources.GetObject("termekTorlesButton.Image");
+            termekTorlesButton.ImageAlign = ContentAlignment.TopCenter;
+            termekTorlesButton.Location = new Point(347, 436);
             termekTorlesButton.Name = "termekTorlesButton";
-            termekTorlesButton.Size = new Size(111, 38);
+            termekTorlesButton.Size = new Size(109, 51);
             termekTorlesButton.TabIndex = 22;
-            termekTorlesButton.Text = "Termék törlése";
+            termekTorlesButton.Text = "Törlés";
+            termekTorlesButton.TextAlign = ContentAlignment.BottomCenter;
             termekTorlesButton.UseVisualStyleBackColor = false;
             termekTorlesButton.Click += termekTorlesButton_Click;
             // 
@@ -140,11 +146,14 @@
             termekModositasButton.Cursor = Cursors.Hand;
             termekModositasButton.FlatStyle = FlatStyle.Popup;
             termekModositasButton.Font = new Font("Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            termekModositasButton.Location = new Point(176, 436);
+            termekModositasButton.Image = (Image)resources.GetObject("termekModositasButton.Image");
+            termekModositasButton.ImageAlign = ContentAlignment.TopCenter;
+            termekModositasButton.Location = new Point(117, 436);
             termekModositasButton.Name = "termekModositasButton";
-            termekModositasButton.Size = new Size(111, 38);
+            termekModositasButton.Size = new Size(107, 51);
             termekModositasButton.TabIndex = 20;
-            termekModositasButton.Text = "Termék módosítása";
+            termekModositasButton.Text = "Módosítás";
+            termekModositasButton.TextAlign = ContentAlignment.BottomCenter;
             termekModositasButton.UseVisualStyleBackColor = false;
             termekModositasButton.Click += termekModositasButton_Click;
             // 
@@ -171,11 +180,14 @@
             termekMentesButton.Cursor = Cursors.Hand;
             termekMentesButton.FlatStyle = FlatStyle.Popup;
             termekMentesButton.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            termekMentesButton.Location = new Point(228, 436);
+            termekMentesButton.Image = (Image)resources.GetObject("termekMentesButton.Image");
+            termekMentesButton.ImageAlign = ContentAlignment.TopCenter;
+            termekMentesButton.Location = new Point(230, 436);
             termekMentesButton.Name = "termekMentesButton";
-            termekMentesButton.Size = new Size(111, 38);
+            termekMentesButton.Size = new Size(111, 51);
             termekMentesButton.TabIndex = 10;
-            termekMentesButton.Text = "Termék hozzáadása";
+            termekMentesButton.Text = "Hozzáadás";
+            termekMentesButton.TextAlign = ContentAlignment.BottomCenter;
             termekMentesButton.UseVisualStyleBackColor = false;
             termekMentesButton.Click += termekMentesButton_Click;
             // 
@@ -184,11 +196,15 @@
             keptermekfeltButton.BackColor = Color.FromArgb(0, 167, 218);
             keptermekfeltButton.Cursor = Cursors.Hand;
             keptermekfeltButton.FlatStyle = FlatStyle.Popup;
-            keptermekfeltButton.Location = new Point(118, 115);
+            keptermekfeltButton.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            keptermekfeltButton.Image = (Image)resources.GetObject("keptermekfeltButton.Image");
+            keptermekfeltButton.ImageAlign = ContentAlignment.TopCenter;
+            keptermekfeltButton.Location = new Point(117, 115);
             keptermekfeltButton.Name = "keptermekfeltButton";
-            keptermekfeltButton.Size = new Size(175, 38);
+            keptermekfeltButton.Size = new Size(107, 51);
             keptermekfeltButton.TabIndex = 9;
             keptermekfeltButton.Text = "Kép feltöltés";
+            keptermekfeltButton.TextAlign = ContentAlignment.BottomCenter;
             keptermekfeltButton.UseVisualStyleBackColor = false;
             keptermekfeltButton.Click += keptermekfeltButton_Click;
             // 
@@ -306,12 +322,15 @@
             kategoriaModositasButton.BackColor = Color.Indigo;
             kategoriaModositasButton.Cursor = Cursors.Hand;
             kategoriaModositasButton.FlatStyle = FlatStyle.Popup;
-            kategoriaModositasButton.Font = new Font("Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            kategoriaModositasButton.Location = new Point(164, 273);
+            kategoriaModositasButton.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            kategoriaModositasButton.Image = (Image)resources.GetObject("kategoriaModositasButton.Image");
+            kategoriaModositasButton.ImageAlign = ContentAlignment.TopCenter;
+            kategoriaModositasButton.Location = new Point(116, 326);
             kategoriaModositasButton.Name = "kategoriaModositasButton";
-            kategoriaModositasButton.Size = new Size(110, 38);
+            kategoriaModositasButton.Size = new Size(110, 48);
             kategoriaModositasButton.TabIndex = 21;
-            kategoriaModositasButton.Text = "Kategoria módosítása";
+            kategoriaModositasButton.Text = "Módosítás";
+            kategoriaModositasButton.TextAlign = ContentAlignment.BottomCenter;
             kategoriaModositasButton.UseVisualStyleBackColor = false;
             kategoriaModositasButton.Click += kategoriaModositasButton_Click;
             // 
@@ -320,12 +339,15 @@
             kategoriaTorlesButton.BackColor = Color.Maroon;
             kategoriaTorlesButton.Cursor = Cursors.Hand;
             kategoriaTorlesButton.FlatStyle = FlatStyle.Popup;
-            kategoriaTorlesButton.Font = new Font("Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            kategoriaTorlesButton.Location = new Point(293, 273);
+            kategoriaTorlesButton.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            kategoriaTorlesButton.Image = (Image)resources.GetObject("kategoriaTorlesButton.Image");
+            kategoriaTorlesButton.ImageAlign = ContentAlignment.TopCenter;
+            kategoriaTorlesButton.Location = new Point(346, 326);
             kategoriaTorlesButton.Name = "kategoriaTorlesButton";
-            kategoriaTorlesButton.Size = new Size(110, 38);
+            kategoriaTorlesButton.Size = new Size(108, 48);
             kategoriaTorlesButton.TabIndex = 17;
-            kategoriaTorlesButton.Text = "Kategoria törlése";
+            kategoriaTorlesButton.Text = "Törlés";
+            kategoriaTorlesButton.TextAlign = ContentAlignment.BottomCenter;
             kategoriaTorlesButton.UseVisualStyleBackColor = false;
             kategoriaTorlesButton.Click += kategoriaTorlesButton_Click;
             // 
@@ -344,9 +366,9 @@
             // 
             // kategoriaHozPictureBox
             // 
-            kategoriaHozPictureBox.Location = new Point(321, 141);
+            kategoriaHozPictureBox.Location = new Point(276, 141);
             kategoriaHozPictureBox.Name = "kategoriaHozPictureBox";
-            kategoriaHozPictureBox.Size = new Size(134, 108);
+            kategoriaHozPictureBox.Size = new Size(178, 169);
             kategoriaHozPictureBox.TabIndex = 15;
             kategoriaHozPictureBox.TabStop = false;
             // 
@@ -355,12 +377,15 @@
             kategoriaMentesButton.BackColor = Color.ForestGreen;
             kategoriaMentesButton.Cursor = Cursors.Hand;
             kategoriaMentesButton.FlatStyle = FlatStyle.Popup;
-            kategoriaMentesButton.Font = new Font("Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            kategoriaMentesButton.Location = new Point(229, 273);
+            kategoriaMentesButton.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            kategoriaMentesButton.Image = (Image)resources.GetObject("kategoriaMentesButton.Image");
+            kategoriaMentesButton.ImageAlign = ContentAlignment.TopCenter;
+            kategoriaMentesButton.Location = new Point(234, 326);
             kategoriaMentesButton.Name = "kategoriaMentesButton";
-            kategoriaMentesButton.Size = new Size(110, 38);
+            kategoriaMentesButton.Size = new Size(106, 48);
             kategoriaMentesButton.TabIndex = 14;
-            kategoriaMentesButton.Text = "Kategoria mentése";
+            kategoriaMentesButton.Text = "Hozzáadás";
+            kategoriaMentesButton.TextAlign = ContentAlignment.BottomCenter;
             kategoriaMentesButton.UseVisualStyleBackColor = false;
             kategoriaMentesButton.Click += kategoriaMentesButton_Click;
             // 
@@ -369,11 +394,15 @@
             kepkategoriaFeltoltButton.BackColor = Color.FromArgb(0, 167, 218);
             kepkategoriaFeltoltButton.Cursor = Cursors.Hand;
             kepkategoriaFeltoltButton.FlatStyle = FlatStyle.Popup;
-            kepkategoriaFeltoltButton.Location = new Point(116, 144);
+            kepkategoriaFeltoltButton.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            kepkategoriaFeltoltButton.Image = (Image)resources.GetObject("kepkategoriaFeltoltButton.Image");
+            kepkategoriaFeltoltButton.ImageAlign = ContentAlignment.TopCenter;
+            kepkategoriaFeltoltButton.Location = new Point(116, 141);
             kepkategoriaFeltoltButton.Name = "kepkategoriaFeltoltButton";
-            kepkategoriaFeltoltButton.Size = new Size(175, 38);
+            kepkategoriaFeltoltButton.Size = new Size(110, 54);
             kepkategoriaFeltoltButton.TabIndex = 13;
             kepkategoriaFeltoltButton.Text = "Kép feltöltés";
+            kepkategoriaFeltoltButton.TextAlign = ContentAlignment.BottomCenter;
             kepkategoriaFeltoltButton.UseVisualStyleBackColor = false;
             kepkategoriaFeltoltButton.Click += kepkategoriaFeltoltButton_Click;
             // 
@@ -410,29 +439,35 @@
             // 
             // termekFileButton
             // 
-            termekFileButton.BackColor = Color.FromArgb(43, 42, 51);
+            termekFileButton.BackColor = Color.DimGray;
             termekFileButton.FlatStyle = FlatStyle.Popup;
             termekFileButton.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
             termekFileButton.ForeColor = Color.White;
-            termekFileButton.Location = new Point(6, 229);
+            termekFileButton.Image = (Image)resources.GetObject("termekFileButton.Image");
+            termekFileButton.ImageAlign = ContentAlignment.TopCenter;
+            termekFileButton.Location = new Point(6, 232);
             termekFileButton.Name = "termekFileButton";
-            termekFileButton.Size = new Size(110, 71);
+            termekFileButton.Size = new Size(110, 60);
             termekFileButton.TabIndex = 3;
             termekFileButton.Text = "Termék File";
+            termekFileButton.TextAlign = ContentAlignment.BottomCenter;
             termekFileButton.UseVisualStyleBackColor = false;
             termekFileButton.Click += termekFileButton_Click;
             // 
             // KategoriaFileButton
             // 
-            KategoriaFileButton.BackColor = Color.FromArgb(43, 42, 51);
+            KategoriaFileButton.BackColor = Color.DimGray;
             KategoriaFileButton.FlatStyle = FlatStyle.Popup;
             KategoriaFileButton.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 238);
             KategoriaFileButton.ForeColor = Color.White;
-            KategoriaFileButton.Location = new Point(6, 141);
+            KategoriaFileButton.Image = (Image)resources.GetObject("KategoriaFileButton.Image");
+            KategoriaFileButton.ImageAlign = ContentAlignment.TopCenter;
+            KategoriaFileButton.Location = new Point(6, 155);
             KategoriaFileButton.Name = "KategoriaFileButton";
-            KategoriaFileButton.Size = new Size(110, 71);
+            KategoriaFileButton.Size = new Size(110, 60);
             KategoriaFileButton.TabIndex = 4;
             KategoriaFileButton.Text = "Kategoria File";
+            KategoriaFileButton.TextAlign = ContentAlignment.BottomCenter;
             KategoriaFileButton.UseVisualStyleBackColor = false;
             KategoriaFileButton.Click += KategoriaFileButton_Click;
             // 
